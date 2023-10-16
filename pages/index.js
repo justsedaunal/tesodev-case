@@ -20,15 +20,16 @@ export default function Home() {
         <div className="add-new-record-container" >
           <AddNewRecord />
         </div>
-        <div>
+        <div className="logo-container" >
           <Image
-            className=""
+            className="logo"
             src="/images/tesodev-logo.jpg"
             alt="Next.js Logo"
             width={180}
             height={37}
             priority
           />
+          <p className="logo-text" > Search app </p>
         </div>
       </main>
     </>

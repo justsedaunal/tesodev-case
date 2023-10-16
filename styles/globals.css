@@ -36,3 +36,26 @@ body {
   border: none;
   border-radius: 10px;
 }
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.logo {
+  width: 278px;
+height: 115px;
+flex-shrink: 0;
+}
+.logo-text {
+  align-self: flex-end;
+  margin-right: -2rem;
+margin-top: 1rem;
+color: #484848;
+font-family: Roboto;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
