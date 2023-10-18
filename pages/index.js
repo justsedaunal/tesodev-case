@@ -5,7 +5,8 @@ import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import AddNewRecord from "./add-new-record";
 import Search from "./search";
-
+import dataCarousel from '../data-carousel.json';
+import Carousel from "./carousel";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -35,6 +36,7 @@ export default function Home() {
         <div className="search-container">
           <Search />
         </div>
+        <Carousel items={dataCarousel.items} />
       </main>
     </>
   );
@@ -53,3 +55,8 @@ export default function Home() {
 // };
 
 // export default Home;
+
+
+
+
+

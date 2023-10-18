@@ -197,7 +197,7 @@ body {
   display: block;
   position: relative;
   width: 100%;
-  border: 1px solid #F2F4F5;
+  border: 1px solid #f2f4f5;
   margin-top: 4px;
 }
 .search-results-container p {
@@ -209,4 +209,71 @@ body {
   font-weight: 700;
   line-height: 24px; /* 150% */
   cursor: pointer;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 5rem;
+}
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  gap: 1rem;
+  width: 1280px;
+}
+
+.carousel-items {
+  display: flex;
+  gap: 1rem;
+  transition: transform 1.5s;
+  width: 100%; 
+}
+
+.carousel-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.carousel-title {
+  align-self: flex-start;
+}
+
+.carousel-text {
+  color: var(--ink-darkest, #090a0a);
+
+  /* Regular/Normal/Bold */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 150% */
+  max-width: 400px;
+}
+
+.carousel-author {
+  color: var(--ink-light, #6c7072);
+
+  /* Tiny/Normal/Regular */
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+}
+
+.carousel-button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
