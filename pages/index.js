@@ -8,6 +8,7 @@ import Search from "./search";
 import dataCarousel from "../data-carousel.json";
 import Carousel from "./carousel";
 import Footer from "./footer";
+import data from "../data.json";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -35,7 +36,7 @@ export default function Home() {
           <p className="logo-text"> Search app </p>
         </div>
         <div className="search-container">
-          <Search />
+          <Search data={data.data} />
         </div>
         <Carousel items={dataCarousel.items} />
         <div className="footer-container">

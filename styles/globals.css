@@ -146,10 +146,11 @@ body {
 
 .search-results-container ul {
   width: 750.838px;
-  height: 257.252px;
+  /* height: 257.252px; */
   border-radius: 24px;
   border: 1px solid #484848;
   background: #fff;
+  position: absolute;
 }
 
 .search-results-container li {
@@ -208,7 +209,7 @@ body {
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  line-height: 24px; /* 150% */
+  line-height: 40px;
   cursor: pointer;
 }
 
