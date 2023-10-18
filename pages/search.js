@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 export default function Search({ data }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -77,7 +78,8 @@ export default function Search({ data }) {
                 </div>
               </li>
             ))}
-            <p>Show more...</p>
+            <Link href="list" >      <p>Show more...</p></Link>
+      
           </ul>
         )}
       </div>
