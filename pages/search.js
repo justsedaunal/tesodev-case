@@ -18,6 +18,7 @@ export default function Search({ data }) {
     setSearchTerm(query);
     if (query.length >= 2) {
       const filteredResults = data.filter(
+      //  console.log(data)
         (item) =>
           item[7].toLowerCase().includes(query) ||
           item[6].toLowerCase().includes(query)
@@ -35,9 +36,7 @@ export default function Search({ data }) {
   return (
     <>
       <div className="search-inner-container">
-        <div className="search-title-container">
-          <p className="search-title">Find in records</p>
-        </div>
+       
         <div className="search-input-button-container">
           <div className="search-input-container">
             <Image

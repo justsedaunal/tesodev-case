@@ -29,13 +29,16 @@ export default function Home() {
             className="logo"
             src="/images/tesodev-logo.jpg"
             alt="Next.js Logo"
-            width={180}
-            height={37}
+            width={278}
+            height={115}
             priority
           />
           <p className="logo-text"> Search app </p>
         </div>
         <div className="search-container">
+        <div className="search-title-container">
+          <p className="search-title">Find in records</p>
+        </div>
           <Search data={data.data} />
         </div>
         <Carousel items={dataCarousel.items} />
