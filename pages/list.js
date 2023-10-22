@@ -91,10 +91,10 @@ function List() {
             }
           >
             1
-          </li> */}
+          </li> */}{" "}
+          <li onClick={() => paginate(1)}>1</li>
           {currentPage > 3 && (
             <>
-              <li onClick={() => paginate(1)}>1</li>
               <span>...</span>
             </>
           )}
@@ -107,16 +107,14 @@ function List() {
               {number}
             </li>
           ))}
-          {currentPage < totalPages - 3 && 
-          <>
-          {/* <span>...</span>
-          <li onClick={() => paginate(totalPages - 2)}>{totalPages - 2}</li>
-          <li onClick={() => paginate(totalPages - 1)}>{totalPages - 1}</li>
-          <li onClick={() => paginate(totalPages)}>{totalPages}</li> */}
-          </>}
+          {currentPage < totalPages - 3 && (
+            <>
+              <span>...</span>
+            </>
+          )}
           {/* <li onClick={() => paginate(totalPages - 2)}>{totalPages - 2}</li>
-          <li onClick={() => paginate(totalPages - 1)}>{totalPages - 1}</li>
-          <li onClick={() => paginate(totalPages)}>{totalPages}</li> */}
+          <li onClick={() => paginate(totalPages - 1)}>{totalPages - 1}</li> */}
+          <li onClick={() => paginate(totalPages)}>{totalPages}</li>
           <button
             onClick={() =>
               currentPage < totalPages && setCurrentPage(currentPage + 1)
