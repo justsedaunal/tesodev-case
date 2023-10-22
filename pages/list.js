@@ -1,6 +1,5 @@
 import AddNewRecord from "./add-new-record";
 import Search from "./search";
-
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
@@ -27,14 +26,116 @@ function List() {
     setCurrentPage(pageNumber);
   };
 
+  const renderPagination = () => {
+    const totalPages = Math.ceil(data.length / itemsPerPage);
+
+    if (totalPages <= 1) {
+      return null;
+    }
+
+    const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+    const visiblePages = pageNumbers.filter(
+      (page) => Math.abs(page - currentPage) <= 2
+    );
+
+    if (totalPages <= 6) {
+      return (
+        <div className="pagination">
+          <ul>
+            <button
+              onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
+              className={currentPage === 1 ? "disabled" : "pagination-button"}
+            >
+              Previous
+            </button>
+
+            {pageNumbers.map((number) => (
+              <li
+                key={number}
+                onClick={() => paginate(number)}
+                className={currentPage === number ? "active" : ""}
+              >
+                {number}
+              </li>
+            ))}
+
+            <button
+              onClick={() =>
+                currentPage < totalPages && setCurrentPage(currentPage + 1)
+              }
+              className={
+                currentPage === totalPages ? "disabled" : "pagination-button"
+              }
+            >
+              Next
+            </button>
+          </ul>
+        </div>
+      );
+    }
+
+    return (
+      <div className="pagination">
+        <ul>
+          <button
+            onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
+            className={currentPage === 1 ? "disabled" : "pagination-button"}
+          >
+            Previous
+          </button>
+          {/* <li
+            onClick={() => paginate(1)}
+            className={
+              currentPage < 3 && currentPage < 2 && currentPage < 2   ? "hide" : "show"
+            }
+          >
+            1
+          </li> */}
+          {currentPage > 3 && (
+            <>
+              <li onClick={() => paginate(1)}>1</li>
+              <span>...</span>
+            </>
+          )}
+          {pageNumbers.slice(currentPage - 1, currentPage + 2).map((number) => (
+            <li
+              key={number}
+              onClick={() => paginate(number)}
+              className={currentPage === number ? "active" : ""}
+            >
+              {number}
+            </li>
+          ))}
+          {currentPage < totalPages - 3 && 
+          <>
+          {/* <span>...</span>
+          <li onClick={() => paginate(totalPages - 2)}>{totalPages - 2}</li>
+          <li onClick={() => paginate(totalPages - 1)}>{totalPages - 1}</li>
+          <li onClick={() => paginate(totalPages)}>{totalPages}</li> */}
+          </>}
+          {/* <li onClick={() => paginate(totalPages - 2)}>{totalPages - 2}</li>
+          <li onClick={() => paginate(totalPages - 1)}>{totalPages - 1}</li>
+          <li onClick={() => paginate(totalPages)}>{totalPages}</li> */}
+          <button
+            onClick={() =>
+              currentPage < totalPages && setCurrentPage(currentPage + 1)
+            }
+            className={
+              currentPage === totalPages ? "disabled" : "pagination-button"
+            }
+          >
+            Next
+          </button>
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="list-container">
         <div className="list-header-container">
-          {/* <Search  data={data}/> */}
-
-          {/* <h2>Data from Local Storage:</h2> */}
-
           <Image
             className=""
             src="/images/tesodev-logo.jpg"
@@ -46,77 +147,37 @@ function List() {
           <Search data={data.data} />
           <AddNewRecord />
         </div>
-
-        <div className="search-list-container container  ">
-          {" "}
-          <ul>
-            {currentItems.map((item, index) => (
-              //console.log(item[7])
-              <li key={index}>
-                {" "}
-                <div className="hover-div" >
-                  {" "}
-                  <Image
-                    className="location-icon"
-                    src="/images/location.svg"
-                    alt="location-icon"
-                    width={25}
-                    height={25}
-                    priority
-                  />
-                  <div className="search-list-text-container " key={item[0]}>
-                    <div>
-                      <span> {item[6]}</span>
-                      <span> {item[7]} </span>
-                    </div>
-                    <div>
-                      <p> {item[1]}</p>
-                      <p> {item[4]} </p>
+        <div className="list-body-container">
+          <div className="search-list-container ">
+            <ul>
+              {currentItems.map((item, index) => (
+                <li key={index}>
+                  <div className="hover-div">
+                    <Image
+                      className="location-icon"
+                      src="/images/location.svg"
+                      alt="location-icon"
+                      width={25}
+                      height={25}
+                      priority
+                    />
+                    <div className="search-list-text-container" key={item[0]}>
+                      <div>
+                        <span> {item[6]}</span>
+                        <span> {item[7]} </span>
+                      </div>
+                      <div>
+                        <p> {item[1]}</p>
+                        <p> {item[4]} </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-        {/* Pagination */}
-        <div className="pagination">
-          {data.length > itemsPerPage && (
-            <ul>
-              <button
-                onClick={() =>
-                  currentPage > 1 && setCurrentPage(currentPage - 1)
-                }
-                className={currentPage === 1 ? "disabled" : "pagination-button"}
-              >
-                Previous
-              </button>
-              {Array(Math.ceil(data.length / itemsPerPage))
-                .fill()
-                .map((_, i) => (
-                  <li
-                    key={i}
-                    onClick={() => paginate(i + 1)}
-                    className={currentPage === i + 1 ? "active" : ""}
-                  >
-                    {i + 1}
-                  </li>
-                ))}
-              <button
-                onClick={() =>
-                  currentPage < Math.ceil(data.length / itemsPerPage) &&
-                  setCurrentPage(currentPage + 1)
-                }
-                className={
-                  currentPage >= Math.ceil(data.length / itemsPerPage)
-                    ? "disabled"
-                    : "pagination-button"
-                }
-              >
-                Next
-              </button>
+                </li>
+              ))}
             </ul>
-          )}
+          </div>
+
+          {renderPagination()}
         </div>
       </div>
     </>
