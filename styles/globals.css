@@ -657,6 +657,7 @@ body {
   flex-shrink: 0;
   background-color: rgb(196, 196, 196);
   border-radius: 20px;
+  align-self: flex-end;
 }
 
 .toast-container div:first-child {
