@@ -611,6 +611,11 @@ body {
   margin-bottom:2rem;
   padding: 1rem;
 }
+.form input:hover {
+  background-color: rgba(100, 100, 100, 0.08);
+  border-radius: 16px;
+  background-color: rgb(214 214 214 / 60%);
+}
 
 .form input::placeholder {
   color: rgba(100, 100, 100, 0.50);
