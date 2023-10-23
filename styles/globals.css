@@ -573,13 +573,14 @@ body {
 
 .form-toast-container {
   display: flex;
-  justify-content: space-evenly;
+  
 }
 
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 15rem;
 }
 
 .form div {
@@ -658,6 +659,7 @@ body {
   background-color: rgb(196, 196, 196);
   border-radius: 20px;
   align-self: flex-end;
+  margin-left: 10rem;
 }
 
 .toast-container div:first-child {
