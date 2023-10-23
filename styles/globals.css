@@ -580,7 +580,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
- 
 }
 
 .form div {
@@ -608,7 +607,7 @@ body {
   fill: #fff;
   border-radius: 16px;
   stroke: #484848;
-  margin-bottom:2rem;
+  margin-bottom: 2rem;
   padding: 1rem;
 }
 .form input:hover {
@@ -618,32 +617,101 @@ body {
 }
 
 .form input::placeholder {
-  color: rgba(100, 100, 100, 0.50);
-font-family: Roboto;
-font-size: 18px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+  color: rgba(100, 100, 100, 0.5);
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .submit-button {
-
-    width: 138px;
-    height: 46px;
-    background-color: #204080;
-    color: #fff;
-    font-family: Roboto;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    border: none;
-    border-radius: 10px;
-    align-self: flex-end;
-
+  width: 138px;
+  height: 46px;
+  background-color: #204080;
+  color: #fff;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border: none;
+  border-radius: 10px;
+  align-self: flex-end;
 }
 
 .submit-button:hover {
-  background-color: #4F75C2;
+  background-color: #4f75c2;
   cursor: pointer;
+}
+
+.toast-container {
+  display: flex;
+  flex-direction: column;
+  width: 375px;
+  height: 180px;
+  padding: 35px 24px 34px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  flex-shrink: 0;
+  background-color: rgb(196, 196, 196);
+  border-radius: 20px;
+}
+
+.toast-container div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.toast-container div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.toast-texts {
+  display: flex;
+}
+
+.close {
+  align-self: flex-end;
+}
+
+.toast-texts p:first-child {
+  color: var(--ink-darkest, #090a0a);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px; /* 257.143% */
+}
+.toast-texts p:last-child {
+  color: var(--ink-darkest, #090a0a);
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 184.615% */
+}
+
+.toast-texts span {
+  border-radius: 48px;
+background: #FF4E78;
+display: flex;
+width: 100px;
+height: 45px;
+/* text-align: center; */
+justify-content: center;
+align-items: center;
+align-self: center;
+color: var(--sky-white, #FFF);
+text-align: center;
+
+/* Regular/None/Medium */
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 16px; /* 100% */
 }
