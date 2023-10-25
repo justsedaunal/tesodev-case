@@ -21,6 +21,7 @@ const Carousel = ({ items }) => {
   const endIndex = startIndex + itemsPerPage;
   const displayedItems = items.slice(startIndex, endIndex);
 
+
   return (
     <>
       <div className="carousel-container">
@@ -51,7 +52,7 @@ const Carousel = ({ items }) => {
               />
             </svg>
           </button>
-          <div className="carousel-items">
+          <div className="carousel-items" >
             {displayedItems.map((item, index) => (
               <div key={index} className="carousel-item">
                 <img src={item.image} alt={item.alt} />

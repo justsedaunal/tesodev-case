@@ -2,12 +2,36 @@ import AddNewRecord from "./add-new-record";
 import Search from "./search";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function List() {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5); // Change this number to control items per page
   const [sortOrder, setSortOrder] = useState("asc"); // Default sort order is ascending
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = () => {
+    // Retrieve the original data from local storage
+    const storedData = localStorage.getItem("searchResults");
+    const originalData = storedData ? JSON.parse(storedData) : [];
+
+    // Filter the original data based on the search query
+    const filteredData = originalData.filter((item) => {
+      for (let i = 0; i < item.length; i++) {
+        if (
+          typeof item[i] === "string" &&
+          item[i].toLowerCase().includes(searchQuery.toLowerCase())
+        ) {
+          return true;
+        }
+      }
+      return false;
+    });
+
+    // Set the filtered data to the state variable
+    setData(filteredData);
+  };
 
   useEffect(() => {
     // Retrieve data from local storage when the second page loads
@@ -35,18 +59,22 @@ function List() {
     return (
       <div className="sort-container">
         <div className="sort-button">
-          <img src="/asc-dec.png" alt="" />
+          <img src="/images/asc-desc.png" alt="" />
           Order By
         </div>
         <div className="sort-buttons">
           <div
-            className={`sort-hover ${sortOrder === "asc" ? "active-button" : ""}`}
+            className={`sort-hover ${
+              sortOrder === "asc" ? "active-button" : ""
+            }`}
             onClick={sortDataByNameAsc}
           >
             Name ascending
           </div>
           <div
-            className={`sort-hover ${sortOrder === "desc" ? "active-button" : ""}`}
+            className={`sort-hover ${
+              sortOrder === "desc" ? "active-button" : ""
+            }`}
             onClick={sortDataByNameDesc}
           >
             Name descending
@@ -175,15 +203,45 @@ function List() {
       <div>
         <div className="list-container">
           <div className="list-header-container">
-            <Image
-              className=""
-              src="/images/tesodev-logo.jpg"
-              alt="Next.js Logo"
-              width={149}
-              height={63}
-              priority
-            />
-            <Search data={data.data} />
+            <Link href="/">
+              {" "}
+              <Image
+                className=""
+                src="/images/tesodev-logo.jpg"
+                alt="Next.js Logo"
+                width={149}
+                height={63}
+                priority
+              />
+            </Link>
+
+            <div className="search-inner-container">
+              <div className="search-input-button-container">
+                <div className="search-input-container">
+                  {" "}
+                  <img
+                    alt="search icon"
+                    fetchpriority="high"
+                    width="646"
+                    height="48"
+                    decoding="async"
+                    data-nimg="1"
+                    class="search-icon"
+                    src="/images/search.svg"
+                  ></img>
+                  <input
+                    type="text"
+                    className="search-input"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+                <button onClick={handleSearch} className="search-button">
+                  Search
+                </button>
+              </div>
+            </div>
             <AddNewRecord />
           </div>
           <div className="list-body-container">

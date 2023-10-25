@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 
 const RecordForm = () => {
   const [record, setRecord] = useState({
@@ -19,12 +19,12 @@ const RecordForm = () => {
     website: false,
   });
   const [formError, setFormError] = useState(null); // State for the form-level error message
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRecord({ ...record, [name]: value });
     setValidationErrors({ ...validationErrors, [name]: false });
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,9 +59,9 @@ const RecordForm = () => {
         if (response.ok) {
           const { minifiedURL } = await response.json();
           alert(
-           /* `Minified URL: ${minifiedURL}`*/
-           "record has been added "
-            );
+            /* `Minified URL: ${minifiedURL}`*/
+            "record has been added "
+          );
         } else {
           alert("Failed to minify URL. Please try again.");
         }
@@ -97,23 +97,31 @@ const RecordForm = () => {
 
     return isValid;
   };
+  const display = () => {
+    setFormError(null); // Clear the form error
+  };
 
-  const display = ( )=> {
-
-  }
+  useEffect(() => {
+    if (formError) {
+      const timer = setTimeout(display, 3000); // Adjust the time (in milliseconds) as needed
+      return () => clearTimeout(timer);
+    }
+  }, [formError]);
 
   return (
     <>
       <div className="add-link-header">
         {" "}
-        <Image
-          className=""
-          src="/images/tesodev-logo.jpg"
-          alt="Next.js Logo"
-          width={149}
-          height={63}
-          priority
-        />{" "}
+        <Link href="/">
+          <Image
+            className=""
+            src="/images/tesodev-logo.jpg"
+            alt="Next.js Logo"
+            width={149}
+            height={63}
+            priority
+          />{" "}
+        </Link>
         <div>
           <Link href="/list" className="return-list ">
             <svg
@@ -257,13 +265,11 @@ const RecordForm = () => {
             )}
           </div>
 
-          <button type="submit" className="submit-button">
-            Add
-          </button>
+          <button className="submit-button">Add</button>
         </form>
-        {formError && formError.length > 0 &&(
-          <div className="toast-container">
-            <div className="close" onClick={display} >
+        {formError && formError.length > 0 && (
+          <div className="toast-container ">
+            <div className="close" onClick={display}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

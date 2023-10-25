@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+
 export default function Search({ data }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState(data);
@@ -17,17 +18,19 @@ export default function Search({ data }) {
     const query = e.target.value.toLowerCase();
     setSearchTerm(query);
     if (query.length >= 2) {
-      const filteredResults = data.filter(
-      //  console.log(data)
-        (item) =>
-          item[7].toLowerCase().includes(query) ||
-          item[6].toLowerCase().includes(query)
-      );
+      if (Array.isArray(data) && data.every((item) => item.length >= 8)) {
+        const filteredResults = data.filter(
+          //  console.log(data)
+          (item) =>
+            item[7].toLowerCase().includes(query) ||
+            item[6].toLowerCase().includes(query)
+        );
 
-      // Store filtered results in local storage
-      localStorage.setItem("searchResults", JSON.stringify(filteredResults));
+        // Store filtered results in local storage
+        localStorage.setItem("searchResults", JSON.stringify(filteredResults));
 
-      setSearchResults(filteredResults.slice(0, 3)); // Get the first three results
+        setSearchResults(filteredResults.slice(0, 3)); // Get the first three results
+      }
     } else {
       // Clear the results if the search term is less than two characters
       setSearchResults([]);
@@ -36,7 +39,6 @@ export default function Search({ data }) {
   return (
     <>
       <div className="search-inner-container">
-       
         <div className="search-input-button-container">
           <div className="search-input-container">
             <Image
@@ -55,7 +57,7 @@ export default function Search({ data }) {
               onChange={handleSearch}
             />
           </div>
-          <button className="search-button">Search</button>
+          <button className="search-button" >Search</button>
         </div>
       </div>
 
@@ -77,8 +79,10 @@ export default function Search({ data }) {
                 </div>
               </li>
             ))}
-            <Link href="list" >      <p>Show more...</p></Link>
-      
+            <Link href="list">
+              {" "}
+              <p>Show more...</p>
+            </Link>
           </ul>
         )}
       </div>
